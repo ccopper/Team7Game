@@ -11,6 +11,8 @@ var numRows = 10;
 var numColumns = 10;
 var cells = [];
 
+var clearCells = {};
+
 $( document ).ready(function() 
 {
 	buildTable();
@@ -62,27 +64,39 @@ function printArray(arr)
 
 function cellClickHandler(id)
 {
-	console.log(id);
+
 
 	if (typeof(id) != "string") 
 	{
-		console.log("not a string");
-		console.log($(this).attr("id"));
+		//console.log("not a string");
+		//console.log($(this).attr("id"));
 		id = $(this).attr("id");
+		clearCells = {};
+		clearCells["Count"] = 0;
 	}
 	
-	var id = parseInt(id)
-	var row = parseInt(id/10);
-	var col = parseInt(id%10);
-
-	console.log("row: " + row);
-	console.log("col: " + col);
-	console.log(typeof(row));
-	idColor = cells[row, col];
+	if(clearCells[id] == true)
+		return;
 	
+	//console.log(id);	
+		
+		
+	var numId = parseInt(id)
+	var row = parseInt(numId/10);
+	var col = parseInt(numId%10);
+
+	//console.log("row: " + row);
+	//console.log("col: " + col);
+	//console.log(typeof(row));
+	idColor = cells[row][col];
+	
+	clearCells[id] = true;
+	clearCells["Count"] +=1;
+			
 	// North
 	if (row > 0) {
-		if (cells[row-1][col] == idColor) {
+		if (cells[row-1][col] == idColor) 
+		{	
 			cellClickHandler( (row-1) + "" + col );
 		}
 	}
@@ -104,6 +118,18 @@ function cellClickHandler(id)
 			cellClickHandler( row + "" + (col-1) );
 		}
 	}
+	
+	if(clearCells["Count"] >= 3)
+	{
+		for(var cell in clearCells)
+		{
+			if(cell == "Count")
+				continue;
+			console.log(cell);
+			
+		}
+	}
+	
 }
 
 
