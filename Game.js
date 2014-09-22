@@ -1,50 +1,39 @@
 /*
 
 */
-(function()
-{
+//(function()
+//{
+
+var classColors = ["gameCellRed", "gameCellGreen", "gameCellBlue","gameCellYellow"];
+
+var numColors = 4;
+var numRows = 10;
+var numColumns = 10;
+var cells = [];
 
 $( document ).ready(function() 
 {
 	buildTable();
-	colorTable();
-	
-	
+
 });
 
 function buildTable()
 {
-	createArray(numRows, numColumns);
+	cells = [];
 	var tbl = $("#gTable");
 
 	for(x=0; x< numRows; x++)
 	{
+		cells.push([]);
 		tbl.append("<tr />");
 		for(y = 0; y < numColumns; y++)
 		{
 			var color = Math.floor(Math.random() * numColors);
-			cells[x][y] = [color];
-
-			switch (color) {
-				case 0:
-					classColor = "Red";
-					break;
-				case 1:
-					classColor = "Green";
-					break;
-				case 2:
-					classColor = "Blue";
-					break;
-				case 3:
-					classColor = "Yellow";
-					break;
-			}
-
-			var className = "gameCell" + classColor;
+			cells[x][y] = color;
 
 			var cell = $("<td>",
 			{
-				"class": className,
+				"class": classColors[color],
 				"click": cellClickHandler,
 				"id": "" + x + "" + y,
 				"style": "back"
@@ -58,28 +47,7 @@ function buildTable()
 	printArray(cells);
 }
 
-function colorTable()
-{
 
-}
-
-})();
-
-var numColors = 4;
-var numRows = 10;
-var numColumns = 10;
-var cells = [];
-function createArray(r, c)
-{
-	for (x = 0; x < r; x++) {
-		var row = [];
-		for (y = 0; c < c; y++) {
-			var cell = [];
-			row.push(cell);
-		}
-		cells.push(row);
-	}
-}	
 
 function printArray(arr)
 {
@@ -94,43 +62,51 @@ function printArray(arr)
 
 function cellClickHandler(id)
 {
-
 	console.log(id);
 
-	if (typeof(id) != "string") {
+	if (typeof(id) != "string") 
+	{
 		console.log("not a string");
 		console.log($(this).attr("id"));
 		id = $(this).attr("id");
 	}
+	
+	var id = parseInt(id)
+	var row = parseInt(id/10);
+	var col = parseInt(id%10);
 
-
-	console.log("id[0]: " + id[0]);
-	console.log("id[1]: " + id[1]);
-	console.log(typeof(id[0]));
-	idColor = cells[id[0], id[1]];
-
+	console.log("row: " + row);
+	console.log("col: " + col);
+	console.log(typeof(row));
+	idColor = cells[row, col];
+	
 	// North
-	if (id[0] > 0) {
-		if (cells[id[0]-1][id[1]] == idColor) {
-			cellClickHandler( (id[0]-1) + "" + id[1] );
+	if (row > 0) {
+		if (cells[row-1][col] == idColor) {
+			cellClickHandler( (row-1) + "" + col );
 		}
 	}
 	// South
-	if (id[0] < numRows-1) {
-		if (cells[id[0]+1][id[1]] == idColor) {
-			cellClickHandler( (id[0]+1) + "" + id[1] );
+	if (row < numRows-1) {
+		if (cells[row+1][col] == idColor) {
+			cellClickHandler( (row+1) + "" + col );
 		}
 	}
 	// East
-	if (id[1] < numColumns-1) {
-		if (cells[id[0]][id[1]+1] == idColor) {
-			cellClickHandler( id[0] + "" + (id[1]+1) );
+	if (col < numColumns-1) {
+		if (cells[row][col+1] == idColor) {
+			cellClickHandler( row + "" + (col+1) );
 		}
 	}
 	// West
-	if (id[1] > 0) {
-		if (cells[id[0]][id[1]-1] == idColor) {
-			cellClickHandler( id[0] + "" + (id[1]-1) );
+	if (col > 0) {
+		if (cells[row][col-1] == idColor) {
+			cellClickHandler( row + "" + (col-1) );
 		}
 	}
 }
+
+
+
+//})();
+
