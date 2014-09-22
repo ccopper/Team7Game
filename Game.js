@@ -22,24 +22,20 @@ function buildTable()
 		tbl.append("<tr />");
 		for(y = 0; y < numColumns; y++)
 		{
-			var color = Math.floor(Math.random() * numGradients) * 2;
-			// var color2 = color1 + 1;
-			// console.log("(" + x + "," + y + ")");
-			// console.log(color + ": " + colors[color]);
-			// console.log(color2 + ": " + colors[color2]);
-			// cells[x][y] = [colors[color], colors[color2]];
+			var color = Math.floor(Math.random() * numColors);
+			cells[x][y] = [color];
 
 			switch (color) {
 				case 0:
 					classColor = "Red";
 					break;
-				case 2:
+				case 1:
 					classColor = "Green";
 					break;
-				case 4:
+				case 2:
 					classColor = "Blue";
 					break;
-				case 6:
+				case 3:
 					classColor = "Yellow";
 					break;
 			}
@@ -49,7 +45,7 @@ function buildTable()
 			var cell = $("<td>",
 			{
 				"class": className,
-				/*"click": cellClickHandler,*/
+				"click": cellClickHandler,
 				"id": "" + x + "" + y,
 				"style": "back"
 			});
@@ -58,6 +54,8 @@ function buildTable()
 		}
 	
 	}
+
+	printArray(cells);
 }
 
 function colorTable()
@@ -67,13 +65,7 @@ function colorTable()
 
 })();
 
-var colors = [
-				"#FF0000", "#FF8080", // Red
-				"#33CC33", "#70DB70", // Green
-				"#3333FF", "#8585FF", // Blue
-				"#FFCC00", "#FFE066"]; // Yellow
-
-var numGradients = colors.length/2;
+var numColors = 4;
 var numRows = 10;
 var numColumns = 10;
 var cells = [];
@@ -88,3 +80,57 @@ function createArray(r, c)
 		cells.push(row);
 	}
 }	
+
+function printArray(arr)
+{
+	for (x = 0; x < arr[0].length; x++) {
+		var output = "";
+		for (y = 0; y < arr.length; y++) {
+			output += ", " + arr[x][y];
+		}
+		console.log(output);
+	}
+}
+
+function cellClickHandler(id)
+{
+
+	console.log(id);
+
+	if (typeof(id) != "string") {
+		console.log("not a string");
+		console.log($(this).attr("id"));
+		id = $(this).attr("id");
+	}
+
+
+	console.log("id[0]: " + id[0]);
+	console.log("id[1]: " + id[1]);
+	console.log(typeof(id[0]));
+	idColor = cells[id[0], id[1]];
+
+	// North
+	if (id[0] > 0) {
+		if (cells[id[0]-1][id[1]] == idColor) {
+			cellClickHandler( (id[0]-1) + "" + id[1] );
+		}
+	}
+	// South
+	if (id[0] < numRows-1) {
+		if (cells[id[0]+1][id[1]] == idColor) {
+			cellClickHandler( (id[0]+1) + "" + id[1] );
+		}
+	}
+	// East
+	if (id[1] < numColumns-1) {
+		if (cells[id[0]][id[1]+1] == idColor) {
+			cellClickHandler( id[0] + "" + (id[1]+1) );
+		}
+	}
+	// West
+	if (id[1] > 0) {
+		if (cells[id[0]][id[1]-1] == idColor) {
+			cellClickHandler( id[0] + "" + (id[1]-1) );
+		}
+	}
+}
