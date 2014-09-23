@@ -10,8 +10,9 @@ var numColors = 4;
 var numRows = 10;
 var numColumns = 10;
 var cells = [];
-
-var adjCells = {};
+var
+ adjCells = {};
+var score = 0;
 
 $( document ).ready(function() 
 {
@@ -225,6 +226,18 @@ function cellClickHandler(id)
 		
 	}
 	
+	console.log("here");
+	updateScore(adjCells["Count"]);
+}
+
+function updateScore(numCells)
+{
+
+	console.log("in updateScore: score(" + score + ") + new points(" + numCells + ")");
+	var scoreElement = $("#score");
+
+	var newScore = score + (Math.pow(numCells, 1.5)*10);
+	scoreElement.text(Math.floor(newScore).toString());
 }
 
 
