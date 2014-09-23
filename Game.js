@@ -11,13 +11,93 @@ var numRows = 10;
 var numColumns = 10;
 var cells = [];
 
-var clearCells = {};
+var adjCells = {};
 
 $( document ).ready(function() 
 {
 	buildTable();
+		
+	$("#gTable td").hover(function() 
+	{
+		var id = $(this).attr("id");
+		adjCells = {};
+		adjCells["Count"] = 0;
+		
+		var numId = parseInt(id)
+		var row = parseInt(numId/10);
+		var col = parseInt(numId%10);
 
+		selectAdj(row, col);
+		for(var cell in adjCells)
+		{
+			if(cell == "Count")
+				continue;
+		
+			$("#" + cell).addClass("rotate");						
+		}
+	
+	}, function ()
+	{
+		var id = $(this).attr("id");
+		adjCells = {};
+		adjCells["Count"] = 0;
+		
+		var numId = parseInt(id)
+		var row = parseInt(numId/10);
+		var col = parseInt(numId%10);
+
+		selectAdj(row, col);
+		
+		for(var cell in adjCells)
+		{
+			if(cell == "Count")
+				continue;
+		
+			$("#" + cell).removeClass("rotate");
+						
+		}
+		
+	});	
 });
+
+function selectAdj(row, col)
+{
+	var id = row + "" + col;
+	
+	if(adjCells[id] == true)
+		return;	
+		
+	var idColor = cells[row][col];
+	
+	adjCells[id] = true;
+	adjCells["Count"] +=1;
+			
+	// North
+	if (row > 0) {
+		if (cells[row-1][col] == idColor) {	
+			selectAdj((row-1), col );
+		}
+	}
+	// South
+	if (row < numRows-1) {
+		if (cells[row+1][col] == idColor) {
+			selectAdj( (row+1), col );
+		}
+	}
+	// East
+	if (col < numColumns-1) {
+		if (cells[row][col+1] == idColor) {
+			selectAdj( row, (col+1) );
+		}
+	}
+	// West
+	if (col > 0) {
+		if (cells[row][col-1] == idColor) {
+			selectAdj( row, (col-1) );
+		}
+	}
+}
+
 
 function buildTable()
 {
@@ -64,74 +144,36 @@ function printArray(arr)
 
 function cellClickHandler(id)
 {
-
-
-	if (typeof(id) != "string") 
-	{
-		//console.log("not a string");
-		//console.log($(this).attr("id"));
-		id = $(this).attr("id");
-		clearCells = {};
-		clearCells["Count"] = 0;
-	}
-	
-	if(clearCells[id] == true)
-		return;
-	
-	//console.log(id);	
-		
+	id = $(this).attr("id");
+	adjCells = {};
+	adjCells["Count"] = 0;
 		
 	var numId = parseInt(id)
 	var row = parseInt(numId/10);
 	var col = parseInt(numId%10);
 
-	//console.log("row: " + row);
-	//console.log("col: " + col);
-	//console.log(typeof(row));
-	idColor = cells[row][col];
+	selectAdj(row, col);
 	
-	clearCells[id] = true;
-	clearCells["Count"] +=1;
-			
-	// North
-	if (row > 0) {
-		if (cells[row-1][col] == idColor) 
-		{	
-			cellClickHandler( (row-1) + "" + col );
-		}
-	}
-	// South
-	if (row < numRows-1) {
-		if (cells[row+1][col] == idColor) {
-			cellClickHandler( (row+1) + "" + col );
-		}
-	}
-	// East
-	if (col < numColumns-1) {
-		if (cells[row][col+1] == idColor) {
-			cellClickHandler( row + "" + (col+1) );
-		}
-	}
-	// West
-	if (col > 0) {
-		if (cells[row][col-1] == idColor) {
-			cellClickHandler( row + "" + (col-1) );
-		}
-	}
-	
-	if(clearCells["Count"] >= 3)
+	if(adjCells["Count"] >= 3)
 	{
-		for(var cell in clearCells)
+		for(var cell in adjCells)
 		{
 			if(cell == "Count")
 				continue;
-			console.log(cell);
+			
+			var numId = parseInt(id)
+			var row = parseInt(numId/10);
+			var col = parseInt(numId%10);
+		
+			$("#" + cell).css("display", "none");
+			
+			cells[row].splice(col, 1);
+			cells[row].push(Math.floor(Math.random() * numColors));
 			
 		}
 	}
 	
 }
-
 
 
 //})();

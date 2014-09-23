@@ -39,6 +39,12 @@ table td:hover
 	box-shadow: 0px 0px;
 }
 
+.rotate
+{
+	-webkit-animation: myfirst 1.5s infinite; 
+	box-shadow: 0px 0px;
+}
+
 .gameCellRed
 {
 	background: -webkit-linear-gradient(left, #FF0000 , #FF8080); /* For Safari 5.1 to 6.0 */
