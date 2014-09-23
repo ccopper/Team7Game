@@ -92,7 +92,7 @@ table td:hover
     to {transform: rotate(360deg);}
 }
 
-#newGame
+.mButton
 {
 	float: right;
 	border: 1px solid black;
@@ -107,14 +107,28 @@ table td:hover
 	height: 50px;
 	margin-left: 50px;
 	
-	
+	box-shadow: 10px 10px 5px #888888;
 }
-#newGame:hover
+
+.mButton:hover
 {
 	background: grey;
 	cursor: pointer;
 
 }
+
+#partyMode
+{
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	width: 250px;
+	font-size: 1.8em;
+	text-align: center;
+	vertical-align: middle;
+	padding: 1px;
+}
+
 
 #score
 {
@@ -130,7 +144,7 @@ table td:hover
 	width: 	150px;
 
 	margin-left: auto;
-
+	box-shadow: 10px 10px 5px #888888;
 }
 
 
