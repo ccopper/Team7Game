@@ -16,6 +16,16 @@ var score = 0;
 
 $( document ).ready(function() 
 {
+
+	var c = document.getElementById("titleBar");
+	var ctx = c.getContext("2d");
+	ctx.font = "50px Arial";
+	ctx.shadowColor = '#FFFFFF';
+  	ctx.shadowBlur = 20;
+  	ctx.shadowOffsetX = 5;
+  	ctx.shadowOffsetY = 5;
+	ctx.fillText("Disco Match",10,100);
+	
 	buildTable();
 	init();
 
