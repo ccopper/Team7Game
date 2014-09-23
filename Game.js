@@ -4,9 +4,9 @@
 //(function()
 //{
 
-var classColors = ["gameCellRed", "gameCellGreen", "gameCellBlue","gameCellYellow"];
+var classColors = ["gameCellRed", "gameCellGreen", "gameCellBlue","gameCellYellow", "gameCellPurple"];
 
-var numColors = 4;
+var numColors = 5;
 var numRows = 10;
 var numColumns = 10;
 var cells = [];

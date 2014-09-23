@@ -77,6 +77,14 @@ table td:hover
   	background: linear-gradient(to right, #FFCC00, #FFE066); /* Standard syntax */
 }
 
+.gameCellPurple
+{
+	background: -webkit-linear-gradient(left, #CC00FF, #FF00FF); /* For Safari 5.1 to 6.0 */
+  	background: -o-linear-gradient(right, #CC00FF, #FF00FF); /* For Opera 11.1 to 12.0 */
+  	background: -moz-linear-gradient(right, #CC00FF, #FF00FF); /* For Firefox 3.6 to 15 */
+  	background: linear-gradient(to right, #CC00FF, #FF00FF); /* Standard syntax */
+}
+
 @-webkit-keyframes myfirst 
 {
     from 
