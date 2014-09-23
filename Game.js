@@ -21,6 +21,11 @@ $( document ).ready(function()
 
 	$("#newGame").click(function() 
 	{
+
+		var scoreElement = $("#score");
+		var newScore = 0;
+		scoreElement.text(newScore.toString());
+
 		$("#gTable").empty();
 		
 		cells = [];
