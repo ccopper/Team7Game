@@ -16,7 +16,23 @@ var adjCells = {};
 $( document ).ready(function() 
 {
 	buildTable();
+	init();
+
+	$("#newGame").click(function() 
+	{
+		$("#gTable").empty();
 		
+		cells = [];
+		
+		buildTable();
+		init();
+	});
+	
+	
+});
+
+function init()
+{
 	$("#gTable td").hover(function() 
 	{
 		var id = $(this).attr("id");
@@ -58,7 +74,7 @@ $( document ).ready(function()
 		}
 		
 	});	
-});
+}
 
 function selectAdj(row, col)
 {
