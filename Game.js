@@ -223,11 +223,13 @@ function cellClickHandler(id)
 				
 			});		
 		}
+
+		console.log("here");
+		updateScore(adjCells["Count"]);
 		
 	}
 	
-	console.log("here");
-	updateScore(adjCells["Count"]);
+
 }
 
 function updateScore(numCells)
@@ -236,8 +238,9 @@ function updateScore(numCells)
 	console.log("in updateScore: score(" + score + ") + new points(" + numCells + ")");
 	var scoreElement = $("#score");
 
-	var newScore = score + (Math.pow(numCells, 1.5)*10);
-	scoreElement.text(Math.floor(newScore).toString());
+	score = score + (Math.pow(numCells, 1.5)*10);
+
+	scoreElement.text(Math.floor(score).toString());
 }
 
 
