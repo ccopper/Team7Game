@@ -134,7 +134,6 @@ function buildTable()
 				"class": classColors[color],
 				"click": cellClickHandler,
 				"id": "" + x + "" + y,
-				"style": "back"
 			});
 			tbl.find("tr:last").append(cell);
 			
@@ -147,14 +146,22 @@ function buildTable()
 
 function updateTable()
 {
-	for(x=0; x< numRows; x++)
-	{
-		for(y = 0; y < numColumns; y++)
-		{
-			//$("#" + x + "" y).addClass, classColors[cell[x][y]]);
-		}
+	var row = 0;
+	var col = 0
 	
-	}
+	$("#gTable tr").each(function()
+	{
+		$(this).children("td").each(function()
+		{
+			$(this).attr("id", row + "" + col);
+
+			col +=1;
+		});
+		col = 0;
+		row+=1;
+	});	
+	init();
+	printArray(cells);
 }
 
 function printArray(arr)
@@ -187,18 +194,35 @@ function cellClickHandler(id)
 			if(cell == "Count")
 				continue;
 			
-			var numId = parseInt(id);
-			var row = parseInt(numId/10);
-			var col = parseInt(numId%10);
-		
-			$("#" + cell).removeClass(classColors[cells[row][col]]);
+			$("#" + cell).fadeOut("slow", function()
+			{
 			
+				var numId = parseInt($(this).attr("id"));
+				var row = parseInt(numId/10);
+				var col = parseInt(numId%10);
+										
+				cells[row].splice(col, 1);
+				var newColor = Math.floor(Math.random() * numColors);
+				cells[row].push(newColor);
 			
-			
-			//cells[row].splice(col, 1);
-			//cells[row].push(Math.floor(Math.random() * numColors));
-			
+				var newCell = $("<td>",
+				{
+					"class": classColors[newColor],
+					"click": cellClickHandler,
+					"style": "display: none"
+				});		
+				
+				$(this).parent().append(newCell);			
+				
+				$(this).remove();
+				updateTable();
+
+				newCell.fadeIn("slow");
+
+				
+			});		
 		}
+		
 	}
 	
 }
