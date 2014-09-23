@@ -10,9 +10,10 @@ var numColors = 5;
 var numRows = 10;
 var numColumns = 10;
 var cells = [];
-var
- adjCells = {};
+var adjCells = {};
 var score = 0;
+
+var pmToggle;
 
 $( document ).ready(function() 
 {
@@ -28,7 +29,29 @@ $( document ).ready(function()
 	
 	buildTable();
 	init();
-
+	
+	$("#partyMode").click(function() 
+	{
+		if(!pmToggle)
+		{
+			pmToggle = window.setInterval(function() 
+			{ 
+				$("#newGame").click() 
+				$("body").removeClass();
+				$("body").addClass(classColors[Math.floor(Math.random() * numColors)]);
+			},300);
+			$(this).text("Stop the Party");
+		}
+		else
+		{
+			window.clearInterval(pmToggle);
+			pmToggle = false;
+			$(this).text("Party Mode");
+		}
+		
+		
+	});
+	
 	$("#newGame").click(function() 
 	{
 
@@ -242,6 +265,8 @@ function cellClickHandler(id)
 		console.log("here");
 		updateScore(adjCells["Count"]);
 		
+		$("body").removeClass();
+		$("body").addClass(classColors[cells[row][col]]);
 	}
 	
 
