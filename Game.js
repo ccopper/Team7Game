@@ -145,7 +145,17 @@ function buildTable()
 	printArray(cells);
 }
 
-
+function updateTable()
+{
+	for(x=0; x< numRows; x++)
+	{
+		for(y = 0; y < numColumns; y++)
+		{
+			//$("#" + x + "" y).addClass, classColors[cell[x][y]]);
+		}
+	
+	}
+}
 
 function printArray(arr)
 {
@@ -177,14 +187,16 @@ function cellClickHandler(id)
 			if(cell == "Count")
 				continue;
 			
-			var numId = parseInt(id)
+			var numId = parseInt(id);
 			var row = parseInt(numId/10);
 			var col = parseInt(numId%10);
 		
-			$("#" + cell).css("display", "none");
+			$("#" + cell).removeClass(classColors[cells[row][col]]);
 			
-			cells[row].splice(col, 1);
-			cells[row].push(Math.floor(Math.random() * numColors));
+			
+			
+			//cells[row].splice(col, 1);
+			//cells[row].push(Math.floor(Math.random() * numColors));
 			
 		}
 	}
