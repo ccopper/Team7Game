@@ -1,0 +1,154 @@
+/*
+
+*/
+body
+{
+	text-align:center;
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #66FFFF;
+}
+#gTable
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.blank
+{
+
+}
+
+table td
+{
+	width: 50px;
+	height: 50px;
+	
+	margin: 10px;
+	
+	border: 1px solid black; 
+	border-radius:5px;
+	box-shadow: 10px 10px 5px #888888;
+	
+	
+}
+table td:hover
+{
+	-webkit-animation: myfirst 1.5s infinite; 
+	box-shadow: 0px 0px;
+}
+
+.rotate
+{
+	-webkit-animation: myfirst 1.5s infinite; 
+	box-shadow: 0px 0px;
+}
+
+.gameCellRed
+{
+	background: -webkit-linear-gradient(left, #FF0000 , #FF8080); /* For Safari 5.1 to 6.0 */
+  	background: -o-linear-gradient(right, #FF0000 , #FF8080); /* For Opera 11.1 to 12.0 */
+  	background: -moz-linear-gradient(right, #FF0000 , #FF8080); /* For Firefox 3.6 to 15 */
+  	background: linear-gradient(to right, #FF0000 , #FF8080); /* Standard syntax */
+}
+
+.gameCellGreen
+{
+	background: -webkit-linear-gradient(left, #33CC33, #70DB70); /* For Safari 5.1 to 6.0 */
+  	background: -o-linear-gradient(right, #33CC33, #70DB70); /* For Opera 11.1 to 12.0 */
+  	background: -moz-linear-gradient(right, #33CC33, #70DB70); /* For Firefox 3.6 to 15 */
+  	background: linear-gradient(to right, #33CC33, #70DB70); /* Standard syntax */
+}
+
+.gameCellBlue
+{
+	background: -webkit-linear-gradient(left, #3333FF, #8585FF); /* For Safari 5.1 to 6.0 */
+  	background: -o-linear-gradient(right, #3333FF, #8585FF); /* For Opera 11.1 to 12.0 */
+  	background: -moz-linear-gradient(right, #3333FF, #8585FF); /* For Firefox 3.6 to 15 */
+  	background: linear-gradient(to right, #3333FF, #8585FF); /* Standard syntax */
+}
+
+.gameCellYellow
+{
+	background: -webkit-linear-gradient(left, #FFCC00, #FFE066); /* For Safari 5.1 to 6.0 */
+  	background: -o-linear-gradient(right, #FFCC00, #FFE066); /* For Opera 11.1 to 12.0 */
+  	background: -moz-linear-gradient(right, #FFCC00, #FFE066); /* For Firefox 3.6 to 15 */
+  	background: linear-gradient(to right, #FFCC00, #FFE066); /* Standard syntax */
+}
+
+.gameCellPurple
+{
+	background: -webkit-linear-gradient(left, #CC00FF, #FF00FF); /* For Safari 5.1 to 6.0 */
+  	background: -o-linear-gradient(right, #CC00FF, #FF00FF); /* For Opera 11.1 to 12.0 */
+  	background: -moz-linear-gradient(right, #CC00FF, #FF00FF); /* For Firefox 3.6 to 15 */
+  	background: linear-gradient(to right, #CC00FF, #FF00FF); /* Standard syntax */
+}
+
+@-webkit-keyframes myfirst 
+{
+    from 
+	{ transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+.mButton
+{
+	float: right;
+	border: 1px solid black;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 1.1em;
+	color: black;
+	background: lightgrey;
+	padding-left: 5px;
+	padding-right: 5px; 
+	width: 	75px;
+	height: 50px;
+	margin-left: 50px;
+	
+	box-shadow: 10px 10px 5px #888888;
+}
+
+.mButton:hover
+{
+	background: grey;
+	cursor: pointer;
+
+}
+
+#partyMode
+{
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	width: 250px;
+	font-size: 1.8em;
+	text-align: center;
+	vertical-align: middle;
+	padding: 1px;
+}
+
+
+#score
+{
+	float: left;
+	border: 1px solid black;
+	border-radius: 10px;
+	text-align: center;
+	
+	font-size: 2.0em;
+	color: black;
+	background: white;
+	padding: 5px; 
+	width: 	150px;
+
+	margin-left: auto;
+	box-shadow: 10px 10px 5px #888888;
+}
+
+
+/*#titleBar
+{
+	background-color: white;
+}*/
